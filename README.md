@@ -3,10 +3,10 @@
 #Spark Assignment 1
 Consider the two data files (users.csv, transactions.csv). 
 Users file has the following fields: 
- <i>User_ID(represent same user id as transaction userid) 
- <i>EmailID 
- <i>NativeLanguage 
- <i>Location 
+ <l>User_ID(represent same user id as transaction userid) 
+ <l>EmailID 
+ <l>NativeLanguage 
+ <l>Location 
 
 Transactions file has the following fields: 
  <i>Transaction_ID 
