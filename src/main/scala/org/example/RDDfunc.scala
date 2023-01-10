@@ -1,22 +1,25 @@
 package org.example
 
+import org.apache.spark.sql.functions.col
+//import org.apache.spark.sql
 import java.text.SimpleDateFormat
 import java.util.Date
 import org.example.DriverCode2.spark1
 
 object RDDfunc extends App {
 
-  case class LogLine(debug_level: String, timestamp: Date, download_id: Integer,
-                     retrieval_stage: String, rest: String);
-  val dateFormat = "yyyy-MM-dd:HH:mm:ss"
-  val regex = """([^\s]+), ([^\s]+)\+00:00, ghtorrent-([^\s]+) -- ([^\s]+).rb: (.*$)""".r
+//  case class LogLine(debug_level: String, timestamp: Date, download_id: Integer,
+//                     retrieval_stage: String, rest: String);
 
-  val rdd = spark1.read.
-    textFile("C:/Users/AparnaMenonS/IdeaProjects/untitled5/src/main/resources/log1.txt").
-    flatMap(x => x match {
-      case regex(debug_level, dateTime, downloadId, retrievalStage, rest) =>
-        val df = new SimpleDateFormat(dateFormat)
-        new Some(LogLine(debug_level, df.parse(dateTime.replace("T", ":")), downloadId.toInt, retrievalStage, rest))
-      case _ => None;
-    })
+  val df = spark1.read.format("csv") // Use "csv" for both TSV and CSV
+    .option("header", "true")
+    .option("delimiter", "\t") // Set delimiter to tab .
+    .load("C:/Users/AparnaMenonS/IdeaProjects/SparkAssignment/src/main/resources/log1.txt")
+    df.printSchema()
+//    .withColumn(col("_tmp").split(col("value"), "\\,"))
+//    .withColumn(col("_tmp").getItem(0).as("City"))
+//    .withColumn(col("_tmp").getItem(1).as("State"))
+//    .drop("_tmp")
+//    .drop("Address")
+  import spark1.sqlContext.implicits._
 }

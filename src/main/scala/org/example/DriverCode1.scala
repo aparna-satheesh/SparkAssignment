@@ -22,7 +22,7 @@ object DriverCode1 extends App {
   val df_user = spark.read.format("csv")
     .option("header", "true")
     .schema(schema_user)
-    .load("C:/Users/AparnaMenonS/IdeaProjects/untitled5/src/main/resources/user.csv")
+    .load("C:/Users/AparnaMenonS/IdeaProjects/SparkAssignment/src/main/resources/user.csv")
   df_user.printSchema()
   df_user.show()
 
@@ -36,7 +36,7 @@ object DriverCode1 extends App {
   val df_trans = spark.read.format("csv")
     .option("header", "true")
     .schema(schema_trans)
-    .load("C:/Users/AparnaMenonS/IdeaProjects/untitled5/src/main/resources/transaction.csv")
+    .load("C:/Users/AparnaMenonS/IdeaProjects/SparkAssignment/src/main/resources/transaction.csv")
   df_trans.printSchema()
   df_trans.show()
   //1
