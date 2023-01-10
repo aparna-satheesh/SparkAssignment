@@ -40,6 +40,6 @@ val df3 = df2.withColumn("ret_stage",split(col("down_id"),":").getItem(0))
     .drop(cols: _*) //.printSchema()
   // get item 1 to get the ret stage
 //  df3.drop(col("down_id")).printSchema()
-//  df4.printSchema()
+  df4.printSchema()
     df4.show(false)
 }
