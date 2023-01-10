@@ -1,6 +1,6 @@
 # SparkAssignment
 
-Spark Assignment 1
+Spark Assignment 1<br />
 Consider the two data files (users.csv, transactions.csv). 
 Users file has the following fields: 
  * User_ID(represent same user id as transaction userid) 
