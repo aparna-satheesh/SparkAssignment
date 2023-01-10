@@ -3,17 +3,17 @@
 #Spark Assignment 1
 Consider the two data files (users.csv, transactions.csv). 
 Users file has the following fields: 
-User_ID(represent same user id as transaction userid) 
-EmailID 
-NativeLanguage 
-Location 
+ <i>User_ID(represent same user id as transaction userid) 
+ <i>EmailID 
+ <i>NativeLanguage 
+ <i>Location 
 
 Transactions file has the following fields: 
-Transaction_ID 
-Product_ID 
-UserID 
-Price 
-Product_Description 
+ <i>Transaction_ID 
+ <i>Product_ID 
+ <i>UserID 
+ <i>Price 
+ <i>Product_Description 
 
 Questionnaire: 
 (By making use of Spark Core (i.e., without using Spark SQL) find out)
