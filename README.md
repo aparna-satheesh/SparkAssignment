@@ -31,4 +31,5 @@ Total spending done by each user on each product.
 
  
 
+
  
