@@ -24,10 +24,11 @@ object Functions_2 extends App{
   }
   def function_4(df4:DataFrame): Unit = {
     val df_temp = df4.filter(col("rest").contains("http"))
-      .groupBy("ret_stage").count().orderBy(desc("count"))
-      .drop("debug_level")
-    print(df_temp.select(df_temp.columns.slice(0,1).map(col(_)):_*))
-//    df.select(df.columns.slice(0, 1).map(col(_)): _*)
-//    return x
+      .groupBy("ret_stage").count().orderBy(desc("count")).show(1)
+  }
+  def function_5(df4:DataFrame): Unit = {
+    df4.filter(col("rest").contains("http") && col("rest").contains("Fail"))
+      .groupBy("ret_stage").count().orderBy(desc("count")).show()
   }
 }
+

@@ -1,10 +1,9 @@
 package org.example
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
 
 import java.text.SimpleDateFormat
 import java.util.Date
-import org.apache.spark.sql.SQLContext
-import org.apache.spark.sql.functions.col
+import org.apache.spark.sql.functions.{col, desc, to_timestamp}
 //import sparkObject.spark.implicits._
 import org.apache.spark.sql.functions.split
 import org.apache.spark.sql.functions.trim
@@ -49,12 +48,8 @@ object DriverCode2 extends App {
   Functions_2.functions_3(df4)
   println("Most HTTPS Requests :")
   Functions_2.function_4(df4)
-//  val df5 = df4.filter(df4("ret_stage") === " api_client")
-//  val df_temp = df4.filter(col("rest").contains("https"))
-//    .drop("debug_level", "timestamp", "down_id")
-//    df_temp.groupBy("ret_stage").count().show()
-//  val df_temp = df4.withColumn("repo", split(col("rest"), "URL\\:").getItem(1))
-//    .withColumn("repo", split(col("repo"), "/").getItem(0))
-//    .drop("debug_level", "timestamp", "down_id", "ret_stage", "rest")
-
+  Functions_2.function_5(df4)
+  //df4.show(5)
+  val df5 =df4.withColumn("timestamp",split(col("timestamp"),"\\+00:00").getItem(0))
+// dfDate.printSchema()
 }
