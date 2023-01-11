@@ -3,7 +3,7 @@ import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
 
 import java.text.SimpleDateFormat
 import java.util.Date
-import org.apache.spark.sql.functions.{col, desc, to_timestamp}
+import org.apache.spark.sql.functions.{col, concat, concat_ws, desc, hour, to_timestamp}
 //import sparkObject.spark.implicits._
 import org.apache.spark.sql.functions.split
 import org.apache.spark.sql.functions.trim
@@ -40,16 +40,34 @@ object DriverCode2 extends App {
   val df4 = df3.withColumn("rest",split(col("ret_stage"),"\\.rb\\:").getItem(1))
     .withColumn("ret_stage",split(col("ret_stage"),"\\.rb\\:").getItem(0))
     //.withColumn("rest",split(col("ret_stage"),"\\:").getItem(1))
-  df4.printSchema()
-  df4.show(2,false)
+//  df4.printSchema()
+//  df4.show(2,false)
 
   Functions_2.function1(df4)
   Functions_2.functions_2(df4)
   Functions_2.functions_3(df4)
-  println("Most HTTPS Requests :")
+  println("Most HTTP Requests :")
   Functions_2.function_4(df4)
+  println("Most Failed HTTP Requests :")
   Functions_2.function_5(df4)
   //df4.show(5)
   val df5 =df4.withColumn("timestamp",split(col("timestamp"),"\\+00:00").getItem(0))
-// dfDate.printSchema()
+//  df5.show(1,false)
+  val df6=df5.withColumn("date",split(col("timestamp"),"T").getItem(0))
+  .withColumn("time",split(col("timestamp"),"T").getItem(1))
+//  df6.printSchema()
+//    .drop(col("timestamp")).show(1,false)
+  val df7=df6.withColumn("timestamp",concat_ws(" ",col("date"),col("time")))
+    .drop("date","time")
+//  df7.show(1,false)
+    val dfDate=df7.withColumn("timestamp",
+    to_timestamp(col("timestamp"), " yyyy-MM-dd HH:mm:ss"))
+//  dfDate.printSchema()
+//  dfDate.show(1,false)
+
+  println("Most active hour of the day :")
+  Functions_2.functions_6(dfDate)
+  println("Most active repo :")
+  Functions_2.functions_7(df4)
+
 }
