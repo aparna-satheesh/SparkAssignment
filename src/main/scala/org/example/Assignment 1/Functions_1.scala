@@ -15,7 +15,7 @@ object Functions_1 extends App {
           .count())
     }
 
-    def function2(df_userTrans:DataFrame): Unit = {
+    def function2(df_userTrans:DataFrame): = {
         df_userTrans.groupBy("userid", "product_description").count().orderBy("userid").show()
     }
 
